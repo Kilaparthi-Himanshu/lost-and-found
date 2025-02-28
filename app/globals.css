@@ -1,21 +1,213 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@plugin 'tailwind-scrollbar';
+@custom-variant dark (&:where(.dark, .dark *));
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer utilities {
+    /* styles.module.css */
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 10px !important;  /* Width of vertical scrollbar */
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: rgba(38, 186, 255, 0.2) !important;  /* Scrollbar track */
+        border-radius: 6px !important;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: rgb(100, 172, 255) !important;  /* Scrollbar handle */
+        border-radius: 6px !important;
+    }
+
+    /* Hover effects */
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: rgb(99, 150, 209) !important;
+    }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.neo {
+    background: #ffffff;
+box-shadow:  16px 16px 32px #cccccc,
+             -16px -16px 32px #ffffff;
+}
+
+@keyframes wave {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.wave-bg {
+    animation: wave 20s infinite alternate ease-in-out;
+    background-size: 200% 100%;
+}
+
+.floating-bubbles {
+    position: relative;
+    background: linear-gradient(45deg, #60a5fa, #93c5fd);
+    overflow: hidden;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(150px, -150px) scale(1.2);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes floatAlt {
+    0% {
+        transform: translate(0, 0);
+    }
+    33% {
+        transform: translate(-80px, -120px) scale(0.9);
+    }
+    66% {
+        transform: translate(120px, 60px) scale(1.1);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(5px);
+}
+
+.bubble-1 {
+    top: 10%;
+    left: 15%;
+    width: 120px;
+    height: 120px;
+    background: rgba(147, 197, 253, 0.5);
+    animation: float 12s infinite ease-in-out;
+}
+
+.bubble-2 {
+    top: 35%;
+    right: 20%;
+    width: 180px;
+    height: 180px;
+    background: rgba(191, 219, 254, 0.5);
+    animation: floatAlt 20s infinite ease-in-out reverse;
+}
+
+.bubble-3 {
+    bottom: 25%;
+    left: 25%;
+    width: 160px;
+    height: 160px;
+    background: rgba(96, 165, 250, 0.5);
+    animation: float 17s infinite ease-in-out;
+}
+
+.bubble-4 {
+    bottom: 15%;
+    right: 15%;
+    width: 140px;
+    height: 140px;
+    background: rgba(59, 130, 246, 0.5);
+    animation: floatAlt 14s infinite ease-in-out reverse;
+}
+
+.bubble-5 {
+    top: 45%;
+    left: 45%;
+    width: 100px;
+    height: 100px;
+    background: rgba(219, 234, 254, 0.4);
+    animation: float 19s infinite ease-in-out;
+}
+
+.bubble-6 {
+    top: 5%;
+    right: 35%;
+    width: 90px;
+    height: 90px;
+    background: rgba(147, 197, 253, 0.3);
+    animation: floatAlt 16s infinite ease-in-out;
+}
+
+.bubble-7 {
+    bottom: 35%;
+    right: 30%;
+    width: 130px;
+    height: 130px;
+    background: rgba(191, 219, 254, 0.4);
+    animation: float 21s infinite ease-in-out reverse;
+}
+
+.bubble-8 {
+    top: 30%;
+    left: 35%;
+    width: 110px;
+    height: 110px;
+    background: rgba(59, 130, 246, 0.3);
+    animation: floatAlt 18s infinite ease-in-out reverse;
+}
+
+.bubble-9 {
+    top: 20%;
+    left: 60%;
+    width: 95px;
+    height: 95px;
+    background: rgba(147, 197, 253, 0.4);
+    animation: float 15s infinite ease-in-out;
+}
+
+.bubble-10 {
+    bottom: 45%;
+    left: 10%;
+    width: 150px;
+    height: 150px;
+    background: rgba(16, 123, 255, 0.3);
+    animation: floatAlt 22s infinite ease-in-out;
+}
+
+.bubble-11 {
+    top: 60%;
+    right: 5%;
+    width: 85px;
+    height: 85px;
+    background: rgba(96, 165, 250, 0.4);
+    animation: float 16s infinite ease-in-out reverse;
+}
+
+.bubble-12 {
+    bottom: 10%;
+    left: 55%;
+    width: 170px;
+    height: 170px;
+    background: rgba(219, 234, 254, 0.3);
+    animation: floatAlt 19s infinite ease-in-out reverse;
 }
