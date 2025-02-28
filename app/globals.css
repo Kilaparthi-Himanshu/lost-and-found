@@ -14,10 +14,11 @@
     /* styles.module.css */
     .custom-scrollbar::-webkit-scrollbar {
         width: 10px !important;  /* Width of vertical scrollbar */
+        padding-right: 2px !important;
     }
 
     .custom-scrollbar::-webkit-scrollbar-track {
-        background: rgba(38, 186, 255, 0.2) !important;  /* Scrollbar track */
+        background: transparent;  /* Scrollbar track */
         border-radius: 6px !important;
     }
 
@@ -29,6 +30,10 @@
     /* Hover effects */
     .custom-scrollbar::-webkit-scrollbar-thumb:hover {
         background: rgb(99, 150, 209) !important;
+    }
+
+    .parent:has(:hover) {
+        padding-right: 10px; /* Adjust this value */
     }
 }
 
