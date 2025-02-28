@@ -41,19 +41,19 @@ export const PostModal = ({post}: PostProps) => {
     return (
         <motion.div className='bg-[rgba(43,43,43,0.3)] absolute w-full h-full flex items-center justify-center' initial={{ opacity: 0}} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.1 }}>
             <motion.div className='bg-white bg-clip-padding backdrop-filter backdrop-blur-lg rounded-lg w-220 min-h-190 h-max mx-4 p-2 flex flex-col items-center justify-between font-medium gap-2 border border-neutral-400' initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} transition={{ duration: 0.1 }} ref={postModalRef} style={{backgroundColor: 'rgba(255, 255, 255, 0.7)'}}>
-                <div className='absolute rounded bg-red-400 right-2 cursor-pointer text-white z-20' onClick={() => {setModalOpen(false); setSelectedPost(null);}}>
+                <div className='absolute rounded bg-red-400 hover:bg-red-500 right-2 cursor-pointer text-white z-20 active:scale-90' onClick={() => {setModalOpen(false); setSelectedPost(null);}}>
                     <X />
                 </div>
                 <div className={`relative h-80 ${imageOpen && 'w-full h-full'} rounded-lg overflow-hidden cursor-pointer`} onClick={() => setImageOpen(prev => !prev)} title='Click to Zoom In/Out'>
                     {imageLoaded &&
-                    (<img 
-                        src={post.img.src} 
-                        alt={post.name} 
-                        className='rounded-lg object-cover w-full h-full'
-                        onLoad={() => setImageLoaded(true)}
-                        loading="eager" 
-                    />)
-                }
+                        (<img 
+                            src={post.img.src} 
+                            alt={post.name} 
+                            className='rounded-lg object-cover w-full h-full'
+                            onLoad={() => setImageLoaded(true)}
+                            loading="eager" 
+                        />)
+                    }
                 </div>
                 {!imageOpen && 
                 (
