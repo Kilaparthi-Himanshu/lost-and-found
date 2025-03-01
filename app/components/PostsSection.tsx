@@ -13,7 +13,7 @@ export const PostsSection = () => {
     const [search, setSearch] = useAtom(searchAtom);
 
     return (
-        <div className='flex flex-col gap-4 border-x-2 w-full sm:w-[600px] md:w-[700px] xl:w-[1000px] p-10 md:p-14 md:pt-6 pt-4 h-[calc(100vh-64px)] overflow-y-auto custom-scrollbar'>
+        <div className='flex flex-col gap-4 max-sm:border-0 border-x-2 border-neutral-300 w-full sm:w-[600px] md:w-[700px] xl:w-[1000px] p-10 md:p-14 md:pt-6 pt-4 h-[calc(100vh-64px)] overflow-y-auto custom-scrollbar'>
             {posts
                 .filter(post => post.name.toLowerCase().includes(search.toLowerCase()))
                 .map(post => (

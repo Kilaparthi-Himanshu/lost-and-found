@@ -58,16 +58,17 @@ export const PostModal = ({post}: PostProps) => {
                 {!imageOpen && 
                 (
                     <>
-                        <div className='font-bold text-2xl p-1 rounded-xl px-2 bg-white underline'>
+                        <div className='font-bold text-2xl p-1 rounded-xl px-2 underline'>
                             {post.name}
                         </div>
-                        <div className='font-medium text-lg text-center rounded-xl p-1' style={{backgroundColor: 'rgba(255, 255, 255, 0.65)'}}>
+                        <div className='font-medium text-lg text-center rounded-xl p-1 font-quicksand'>
                             {post.description}
                             {post.description}
                             {post.description}
                             {post.description}
                             {post.description}
                         </div>
+                        <div className='bg-neutral-400 w-[92%] h-[1px]' />
                         <div className='text-lg'>
                             Location: <a className='bg-blue-200 rounded p-1 px-2 w-max text-blue-600'>{post.location}</a>
                         </div>

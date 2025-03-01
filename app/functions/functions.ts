@@ -1,7 +1,7 @@
 import { useEffect, RefObject } from "react";
 
 type RefTypes = {
-    ref: RefObject<HTMLDivElement | null>;
+    ref: RefObject<HTMLDivElement | HTMLButtonElement | null>;
     setOpen: (open: boolean) => void;
 }
 

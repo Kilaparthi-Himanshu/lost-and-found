@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Search } from './Search';
+import { Account } from './Account';
 
 export const Navbar = () => {
     return (
@@ -12,8 +13,8 @@ export const Navbar = () => {
             <div className='h-full flex-2 flex items-center justify-center'>
                 <Search />
             </div>
-            <div className='h-full flex-[0.6]'>
-                
+            <div className='h-full flex-[0.6] flex items-center justify-end'>
+                <Account />
             </div>
         </div>
     );

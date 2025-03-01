@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 @import 'tailwindcss';
 @plugin 'tailwind-scrollbar';
 @custom-variant dark (&:where(.dark, .dark *));
@@ -47,9 +48,13 @@
   }
 }
 
+@theme {
+    --font-quicksand: "Quicksand", sans-serif;
+}
+
 .neo {
     background: #ffffff;
-box-shadow:  16px 16px 32px #cccccc,
+    box-shadow:  16px 16px 32px #cccccc,
              -16px -16px 32px #ffffff;
 }
 

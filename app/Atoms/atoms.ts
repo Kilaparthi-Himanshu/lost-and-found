@@ -26,19 +26,19 @@ export const postsAtom = atom([
         "email": "hkilapar2@gitam.in"
     },
     {
-        "img": Abstract,
-        "name": "Abstract",
-        "description": "A Black Bag with a steel water bottle is lost during the lunch hours on Monday of the 2nd week of March 2025.",
-        "location": "ICT",
-        "status": "Found",
-        "email": "hkilapar2@gitam.in"
-    },
-    {
         "img": Bag,
         "name": "Black Bag",
         "description": "A Black Bag with a steel water bottle is lost during the lunch hours on Monday of the 2nd week of March 2025.",
         "location": "Cotton Bhavan",
         "status": "Lost",
+        "email": "hkilapar2@gitam.in"
+    },
+    {
+        "img": Abstract,
+        "name": "Abstract",
+        "description": "A Black Bag with a steel water bottle is lost during the lunch hours on Monday of the 2nd week of March 2025.",
+        "location": "ICT",
+        "status": "Found",
         "email": "hkilapar2@gitam.in"
     }
 ]);

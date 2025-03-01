@@ -8,7 +8,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function LoginPage() {
     const [showPassword, setShowPassword] = useState<boolean>(false);
-    const [userAction, setUserAction] = useState<string>('Signup');
+    const [userAction, setUserAction] = useState<string>('Login');
 
     function changeUserAction(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
