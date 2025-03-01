@@ -3,7 +3,6 @@ import { FaSearch } from "react-icons/fa";
 import { useAtom } from 'jotai';
 import { searchAtom } from '../Atoms/atoms';
 import { RxCrossCircled } from "react-icons/rx";
-import { motion } from 'framer-motion';
 
 export const Search = () => {
     const [search, setSearch] = useAtom(searchAtom);
@@ -16,22 +15,13 @@ export const Search = () => {
             }} className='w-full'>
                 <input placeholder='Search Lost Items' value={search} id="searchInput" className='w-full border-0 outline-0 font-medium text-[17px]' type="text" onChange={(e) => setSearch(e.target.value)} autoComplete='off' />
             </form>
-            <motion.div
-                key={search.length ? 'RxCrossCircled' : 'FaSearch'}
-                initial={{ opacity: 0, rotate: -90 }}
-                animate={{ opacity: 1, rotate: 0 }}
-                exit={{ opacity: 0, rotate: 90 }}
-                transition={{ 
-                    duration: 0.3,
-                    ease: "easeInOut"
-                }}
-            >
+            <div>
                 {search.length ? 
                     <RxCrossCircled className='size-6 cursor-pointer text-emerald-600' onClick={() => setSearch('')} />
                     : 
                     <FaSearch className='size-5 text-emerald-600' />
                 }
-            </motion.div>
+            </div>
         </div>
     );
 }

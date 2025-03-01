@@ -56,13 +56,13 @@ export const Account = () => {
             </button>
             <AnimatePresence>
             {accountModalOpen && (
-                <motion.div className='absolute w-80 h-max rounded-lg right-8 top-14 bg-clip-padding backdrop-filter backdrop-blur-lg border border-neutral-300 text-black font-quicksand flex flex-col items-center gap-2 font-medium overflow-hidden' style={{backgroundColor: 'rgba(255, 255, 255, 0.7)'}} 
+                <motion.div className='absolute w-80 h-max rounded-lg right-8 top-14 bg-clip-padding backdrop-filter backdrop-blur-lg border border-neutral-300 text-black font-quicksand flex flex-col items-center gap-2 font-medium overflow-hidden shadow-xl' style={{backgroundColor: 'rgba(255, 255, 255, 0.7)'}} 
                     initial={{ opacity: 0, y: -10 }} 
                     animate={{ opacity: 1, y: 0 }} 
                     exit={{ opacity: 0, y: -10 }} 
                     transition={{ duration: 0.1 }}
                 >
-                    <div className='bg-gradient-to-r from-blue-500 to-blue-700 p-4 flex justify-center w-full h-max'>
+                    <div className='bg-gradient-to-r from-blue-600 to-teal-400 p-4 flex justify-center w-full h-max'>
                         <div className="w-15 h-15 rounded-full bg-white flex items-center justify-center text-gray-500 text-3xl border-4 border-white">
                             <User size={35} />
                         </div>

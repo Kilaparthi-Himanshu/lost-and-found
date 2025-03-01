@@ -39,7 +39,7 @@ export default function LoginPage() {
         <div className="bubble bubble-11"></div>
         <div className="bubble bubble-12"></div>
         <div className='w-screen h-screen backdrop-blur-sm flex items-center justify-center'>
-            <form className="border-2 w-100 h-120 rounded-lg flex flex-col  items-center p-7 pt-5 bg-white bg-clip-padding backdrop-filter backdrop-blur-lg" style={{backgroundColor: 'rgba(255, 255, 255, 0.3)'}}>
+            <form className="border-2 w-100 h-120 rounded-lg flex flex-col  items-center p-7 pt-5 bg-white bg-clip-padding backdrop-filter backdrop-blur-lg px-9" style={{backgroundColor: 'rgba(255, 255, 255, 0.3)'}}>
                 <motion.label htmlFor="signup" className='flex-[0.3] text-2xl font-bold text-stone-100 underline'
                     key={userAction}
                     initial={{ opacity: 0, y: 20 }}
@@ -71,7 +71,7 @@ export default function LoginPage() {
                             </motion.div>
                         </div>
                     </div>
-                <button className='w-40 h-10 bg-neutral-100 font-bold border-stone-600 self-center rounded mt-2 text-xl text-stone-700 cursor-pointer shadow-sm active:scale-95 transition-[scale]' formAction={userAction === 'Signup' ? signup : login}>
+                <button className='w-40 h-10 font-bold border border-stone-600 self-center rounded mt-2 text-xl text-stone-600 cursor-pointer shadow-sm active:scale-95 transition-[scale,background] bg-[rgba(255,_255,_255,_0.4)] hover:bg-[rgba(255,_255,_255,_0.6)]' formAction={userAction === 'Signup' ? signup : login}>
                     {userAction}
                 </button>
                 </div>
