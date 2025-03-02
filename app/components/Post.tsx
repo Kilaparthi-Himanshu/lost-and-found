@@ -4,18 +4,11 @@ import { StaticImageData } from 'next/image';
 import React from 'react';
 import { useState } from 'react';
 import { PostModal } from './PostModal';
-import { modalOpenAtom, selectedPostAtom } from '../Atoms/atoms';
+import { modalOpenAtom, Post as PostFromAtoms, selectedPostAtom } from '../Atoms/atoms';
 import { useAtom } from 'jotai';
 
 export interface PostProps {
-    post: {
-        img: StaticImageData;
-        name: string;
-        description: string;
-        location: string;
-        status: string;
-        email: string;
-    }
+    post: PostFromAtoms
 }
 
 export const Post = ({ post }: PostProps) => {
@@ -25,7 +18,6 @@ export const Post = ({ post }: PostProps) => {
     const handleClick = () => {
         setSelectedPost(post);
         setModalOpen(true);
-        console.log('Opened');
       };
 
     return (

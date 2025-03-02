@@ -1,6 +1,5 @@
 'use client';
 
-import { Eye, EyeOff } from 'lucide-react'
 import { login, signup } from './actions'
 import { useState } from 'react';
 import { motion } from 'framer-motion';
@@ -16,16 +15,7 @@ export default function LoginPage() {
     }
 
     return (
-        // <form>
-        //   <label htmlFor="email">Email:</label>
-        //   <input id="email" name="email" type="email" required />
-        //   <label htmlFor="password">Password:</label>
-        //   <input id="password" name="password" type="password" required />
-        //   <button formAction={login}>Log in</button>
-        //   <button formAction={signup}>Sign up</button>
-        // </form>
-
-        <div className="w-screen h-screen floating-bubbles">
+        <div className="w-screen h-[100dvh] floating-bubbles">
         <div className="bubble bubble-1"></div>
         <div className="bubble bubble-2"></div>
         <div className="bubble bubble-3"></div>
@@ -38,8 +28,8 @@ export default function LoginPage() {
         <div className="bubble bubble-10"></div>
         <div className="bubble bubble-11"></div>
         <div className="bubble bubble-12"></div>
-        <div className='w-screen h-screen backdrop-blur-sm flex items-center justify-center'>
-            <form className="border-2 w-100 h-120 rounded-lg flex flex-col  items-center p-7 pt-5 bg-white bg-clip-padding backdrop-filter backdrop-blur-lg px-9" style={{backgroundColor: 'rgba(255, 255, 255, 0.3)'}}>
+        <div className='w-screen h-[100dvh] backdrop-blur-sm flex items-center justify-center'>
+            <form className="border-2 w-100 h-120 rounded-lg flex flex-col  items-center p-7 pt-5 bg-white bg-clip-padding backdrop-filter backdrop-blur-lg px-8 mx-2" style={{backgroundColor: 'rgba(255, 255, 255, 0.3)'}}>
                 <motion.label htmlFor="signup" className='flex-[0.3] text-2xl font-bold text-stone-100 underline'
                     key={userAction}
                     initial={{ opacity: 0, y: 20 }}
@@ -78,7 +68,7 @@ export default function LoginPage() {
                 <div className='flex items-center justify-center gap-3 text-stone-100'>
                     {userAction === 'Signup' ? 'Already have an account?' : `Don't have an account?`}
                     <button onClick={changeUserAction} className='cursor-pointer hover:underline text-blue-600 font-medium'>
-                        {userAction === 'Signup' ? 'Login' : `Signup`}
+                        {userAction === 'Signup' ? 'Login' : 'Signup'}
                     </button>
                 </div>
             </form>

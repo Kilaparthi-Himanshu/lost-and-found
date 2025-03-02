@@ -12,7 +12,6 @@ export const Account = () => {
     const settingsModalRef = useRef<HTMLDivElement>(null);
     const [user, setUser] = useState<UserType | null>(null);
     const [loading, setLoading] = useState(true);
-    const timestamp = "2025-02-27T12:20:47.276209Z";
     const [month, setMonth] = useState('');
     const [year, setYear] = useState<number>();
 
@@ -22,7 +21,7 @@ export const Account = () => {
                 setLoading(true);
                 const supabase = createClient();
                 const { data: { user }, error } = await supabase.auth.getUser();
-                console.log(user);
+                // console.log(user);
 
                 if (error) {
                     console.error('Error fetching user:', error);
@@ -35,7 +34,7 @@ export const Account = () => {
 
                     setYear(date.getFullYear());
 
-                    console.log(`${month} ${year}`);
+                    // console.log(`${month} ${year}`);
                 }
             } catch (error) {
                 console.error('Unexpected error:', error);
@@ -50,13 +49,13 @@ export const Account = () => {
     handleClickOutside({ref: settingsModalRef, setOpen: setAccountModalOpen});
 
     return (
-        <div className='flex mr-4' ref={settingsModalRef}>
+        <div className='flex mr-4 max-sm:mr-2 ml-2' ref={settingsModalRef}>
             <button>
                 <MdAccountCircle className='size-10 text-neutral-700 cursor-pointer' onClick={() => setAccountModalOpen(prev => !prev)} title='Account' />
             </button>
             <AnimatePresence>
             {accountModalOpen && (
-                <motion.div className='absolute w-80 h-max rounded-lg right-8 top-14 bg-clip-padding backdrop-filter backdrop-blur-lg border border-neutral-300 text-black font-quicksand flex flex-col items-center gap-2 font-medium overflow-hidden shadow-xl' style={{backgroundColor: 'rgba(255, 255, 255, 0.7)'}} 
+                <motion.div className='absolute w-80 h-max rounded-lg right-8 top-14 bg-clip-padding backdrop-filter backdrop-blur-lg border border-neutral-300 text-black font-quicksand flex flex-col items-center gap-2 font-medium overflow-hidden shadow-xl min-h-38' style={{backgroundColor: 'rgba(255, 255, 255, 0.7)'}} 
                     initial={{ opacity: 0, y: -10 }} 
                     animate={{ opacity: 1, y: 0 }} 
                     exit={{ opacity: 0, y: -10 }} 
