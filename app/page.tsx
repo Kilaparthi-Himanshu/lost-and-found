@@ -1,6 +1,7 @@
 import { Navbar } from "./components/Navbar";
 import { PostsSection } from "./components/PostsSection";
 import { PostModalRenderer } from "./components/PostModal";
+import { CreatePostModalRenderer } from "./components/CreatePostModal";
 
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
                 <PostsSection />
             </section>
             <PostModalRenderer />
+            <CreatePostModalRenderer />
         </main>
     );
 }

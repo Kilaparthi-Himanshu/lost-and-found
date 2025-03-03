@@ -221,3 +221,7 @@
     background: rgba(219, 234, 254, 0.3);
     animation: floatAlt 19s infinite ease-in-out reverse;
 }
+
+.input-border-animation {
+    @apply transition-colors transition-shadow duration-200 ease-in-out;
+}

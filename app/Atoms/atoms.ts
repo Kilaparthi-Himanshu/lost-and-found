@@ -55,4 +55,6 @@ export const postsAtom = atom([
 
 export const modalOpenAtom = atom<boolean>(false);
 
+export const createPostModalOpenAtom = atom<boolean>(false);
+
 export const selectedPostAtom = atom<Post | null>(null);
