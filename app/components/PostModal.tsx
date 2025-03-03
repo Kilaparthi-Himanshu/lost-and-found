@@ -6,6 +6,7 @@ import { useAtom } from 'jotai';
 import { modalOpenAtom, selectedPostAtom } from '../Atoms/atoms';
 import { AnimatePresence, motion } from 'framer-motion';
 import { X } from 'lucide-react';
+import Nature from '../images/Nature.jpg'
 
 export const PostModal = ({post}: PostProps) => {
     const postModalRef = useRef<HTMLDivElement>(null);
@@ -16,11 +17,11 @@ export const PostModal = ({post}: PostProps) => {
 
     useEffect(() => {
         const img = new Image();
-        img.src = post.img.src;
+        img.src = post.img?.src || '../images/Nature.jpg';
         img.onload = () => setTimeout(() => {
             setImageLoaded(true);
         }, 100);
-    }, [post.img.src]);
+    }, [post.img?.src]);
 
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
@@ -82,8 +83,8 @@ export const PostModal = ({post}: PostProps) => {
 
                     {imageLoaded &&
                         (<img 
-                            src={post.img.src} 
-                            alt={post.name} 
+                            src={typeof post.img === 'string' ? post.img : '/images/Nature.jpg'} 
+                            alt={post.name}
                             className='object-cover w-full h-full'
                             onLoad={() => setImageLoaded(true)}
                             loading="lazy" 
@@ -100,7 +101,6 @@ export const PostModal = ({post}: PostProps) => {
                         <div className='bg-neutral-400 h-[1px] w-[92%] self-center' />
 
                         <div className='font-medium text-lg max-sm:text-[16px] text-center rounded-xl p-1 mt-4'>
-                            {post.description}
                             {post.description}
                         </div>
 

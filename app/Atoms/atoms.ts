@@ -1,7 +1,7 @@
 import { atom } from 'jotai';
-import Nature from '../images/Nature.jpg';
-import Abstract from '../images/Abstract_1.jpg';
-import Bag from '../images/Bag.png'
+import Nature from '../../public/images/Nature.jpg';
+import Abstract from '../../public/images/Abstract_1.jpg';
+import Bag from '../../public/images/Bag.png'
 import { PostProps } from '../components/Post';
 import { StaticImageData } from 'next/image';
 
@@ -17,6 +17,8 @@ export interface Post {
 }
 
 export const searchAtom = atom<string>('');
+
+export const userIdAtom = atom<string>('');
 
 export const postsAtom = atom([
     {
