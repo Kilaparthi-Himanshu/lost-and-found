@@ -17,11 +17,11 @@ export const PostModal = ({post}: PostProps) => {
 
     useEffect(() => {
         const img = new Image();
-        img.src = post.img?.src || '../images/Nature.jpg';
+        img.src = post.img || '../images/Nature.jpg';
         img.onload = () => setTimeout(() => {
             setImageLoaded(true);
         }, 100);
-    }, [post.img?.src]);
+    }, [post.img]);
 
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
@@ -83,7 +83,7 @@ export const PostModal = ({post}: PostProps) => {
 
                     {imageLoaded &&
                         (<img 
-                            src={typeof post.img === 'string' ? post.img : '/images/Nature.jpg'} 
+                            src={post.img} 
                             alt={post.name}
                             className='object-cover w-full h-full'
                             onLoad={() => setImageLoaded(true)}

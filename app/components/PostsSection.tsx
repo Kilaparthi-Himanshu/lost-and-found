@@ -1,15 +1,30 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { Post } from './Post';
+import { Post, PostProps } from './Post';
+import { Post as AtomPostInterface } from '../Atoms/atoms';
 import { useAtom } from 'jotai';
-import { postsAtom, searchAtom, userIdAtom } from '../Atoms/atoms';
+import { postsAtom, postsLoadingAtom, searchAtom, userIdAtom } from '../Atoms/atoms';
 import { createClient } from '../utils/supabase/client';
+import { PostsLoadingSkeleton } from './PostsLoadingSkeleton';
 
 export const PostsSection = () => {
-    const [posts, setPosts] = useAtom(postsAtom);
+    const [posts, setPosts] = useAtom<AtomPostInterface[]>(postsAtom);
     const [search, setSearch] = useAtom(searchAtom);
     const [userId, setUserId] = useAtom(userIdAtom);
+    const [postsLoading, setPostsLoading] = useAtom(postsLoadingAtom);
+
+    const loaderPost = {
+        "img": "/images/Nature.jpg",
+        "name": "Nature",
+        "description": "A Black Bag with a steel water bottle is lost during the lunch hours on Monday of the 2nd week of March 2025.",
+        "date_lost": "2004-07-17",
+        "time": "15:37",
+        "location": "KRC",
+        "status": "Lost",
+        "email": "hkilapar2@gitam.in",
+        "post_id": "gg1"
+    };
 
     useEffect(() => {
         async function createSignedUrl(name: string, post_id: string) {
@@ -25,23 +40,22 @@ export const PostsSection = () => {
             return data.signedUrl;
         }
 
-        const fetchUserId = async () => {
+        const fetchUserIdAndSetPosts = async () => {
+            setPostsLoading(true);
             const supabase = createClient();
             const {data: {user}} = await supabase.auth.getUser();
 
             setUserId(user!.id);
-            console.log(user!.id);
 
             if (!user) return;
 
             const {data: postsData, error} = await supabase
                 .from('posts')
-                .select('*')
-                .eq('user_id', user.id);
+                .select('*');
 
             if (error || !postsData) return;
 
-            const updatedPosts = await Promise.all(
+            const updatedPosts: AtomPostInterface[] = await Promise.all(
                 postsData.map(async post => {
                     const folderPath = `user_uploads/${post.post_id}/`;
                     const { data: fileList, error } = await supabase.storage
@@ -55,19 +69,27 @@ export const PostsSection = () => {
                 })
             );
 
+            console.log(updatedPosts);
             setPosts(updatedPosts);
+            setPostsLoading(false);
         }
 
-        fetchUserId();
+        fetchUserIdAndSetPosts();
     }, []);
 
     return (
-        <div className='flex flex-col gap-4 max-sm:border-0 border-x-2 border-neutral-300 w-full sm:w-[600px] md:w-[700px] xl:w-[1000px] p-10 md:p-14 md:pt-6 pt-4 h-[calc(100vh-64px)] overflow-y-auto custom-scrollbar'>
-            {posts
-                .filter(post => post.name.toLowerCase().includes(search.toLowerCase()))
-                .map(post => (
-                    <Post post={post} key={post.name} />
-                ))
+
+        <div className={`flex flex-col gap-4 max-sm:border-0 border-x-2 border-neutral-300 w-full sm:w-[600px] md:w-[700px] xl:w-[1000px] p-10 md:p-14 md:pt-6 pt-4 h-[calc(100vh-64px)] ${postsLoading ? 'overflow-hidden' : 'overflow-y-auto'} custom-scrollbar`}>
+            {
+                !postsLoading ? (
+                    posts
+                    .filter(post => post.name.toLowerCase().includes(search.toLowerCase()))
+                    .map(post => (
+                        <Post post={post} key={post.name} />
+                    ))
+                ) : (
+                    <PostsLoadingSkeleton />
+                )
             }
         </div>
     );

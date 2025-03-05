@@ -3,9 +3,20 @@
 import React from 'react';
 import { modalOpenAtom, Post as PostFromAtoms, selectedPostAtom } from '../Atoms/atoms';
 import { useAtom } from 'jotai';
+import { StaticImageData } from 'next/image';
 
 export interface PostProps {
-    post: PostFromAtoms
+    post: {
+        img: string
+        name: string;
+        description: string;
+        date_lost: string;
+        time: string;
+        location: string;
+        status: string;
+        email: string;
+        post_id: string;
+    }
 }
 
 export const Post = ({ post }: PostProps) => {
@@ -21,7 +32,7 @@ export const Post = ({ post }: PostProps) => {
         <div className='border border-neutral-400 xl:min-h-[308px] h-max w-full rounded-lg p-2 flex max-xl:flex-col gap-2 bg-neutral-100 hover:bg-sky-100 cursor-pointer transition-[background]' onClick={handleClick}>
             <img
                 className='rounded-lg object-cover h-full max-h-80 max-w-[400px] max-xl:max-w-full shadow-lg'
-                src={typeof post.img === 'string' ? post.img : '/images/Nature.jpg'}
+                src={post.img}
                 alt="Picture of the author"
             />
             <div className='border border-neutral-400 flex-1 rounded-lg max-sm:py-2 p-4 font-medium flex flex-col h-full text-lg justify-between gap-2'>

@@ -2,6 +2,7 @@ import { Navbar } from "./components/Navbar";
 import { PostsSection } from "./components/PostsSection";
 import { PostModalRenderer } from "./components/PostModal";
 import { CreatePostModalRenderer } from "./components/CreatePostModal";
+import { CreatePostSpinnerRenderer } from "./components/CreatePostSpinner";
 
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
             </section>
             <PostModalRenderer />
             <CreatePostModalRenderer />
+            <CreatePostSpinnerRenderer />
         </main>
     );
 }

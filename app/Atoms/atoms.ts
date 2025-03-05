@@ -6,7 +6,7 @@ import { PostProps } from '../components/Post';
 import { StaticImageData } from 'next/image';
 
 export interface Post {
-    img: StaticImageData;
+    img: string;
     name: string;
     date_lost: string;
     time: string;
@@ -14,43 +14,15 @@ export interface Post {
     location: string;
     status: string;
     email: string;
+    post_id: string;
 }
 
 export const searchAtom = atom<string>('');
 
 export const userIdAtom = atom<string>('');
 
-export const postsAtom = atom([
-    {
-        "img": Nature,
-        "name": "Nature",
-        "description": "A Black Bag with a steel water bottle is lost during the lunch hours on Monday of the 2nd week of March 2025.",
-        "date_lost": "2004-07-17",
-        "time": "15:37",
-        "location": "KRC",
-        "status": "Lost",
-        "email": "hkilapar2@gitam.in"
-    },  
-    {
-        "img": Bag,
-        "name": "Black Bag",
-        "description": "A Black Bag with a steel water bottle is lost during the lunch hours on Monday of the 2nd week of March 2025.",
-        "date_lost": "2004-07-17",
-        "time": "04:37",
-        "location": "Cotton Bhavan",
-        "status": "Lost",
-        "email": "hkilapar2@gitam.in"
-    },
-    {
-        "img": Abstract,
-        "name": "Abstract",
-        "description": "A Black Bag with a steel water bottle is lost during the lunch hours on Monday of the 2nd week of March 2025.",
-        "date_lost": "2004-07-17",
-        "time": "04:37",
-        "location": "ICT",
-        "status": "Found",
-        "email": "hkilapar2@gitam.in"
-    }
+export const postsAtom = atom<Post[]>([
+    
 ]);
 
 export const modalOpenAtom = atom<boolean>(false);
@@ -58,3 +30,7 @@ export const modalOpenAtom = atom<boolean>(false);
 export const createPostModalOpenAtom = atom<boolean>(false);
 
 export const selectedPostAtom = atom<Post | null>(null);
+
+export const postsLoadingAtom = atom<boolean>(false);
+
+export const createPostSpinnerAtom = atom<boolean>(false);
