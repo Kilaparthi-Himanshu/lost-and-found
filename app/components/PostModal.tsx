@@ -43,7 +43,7 @@ export const PostModal = ({post}: PostProps) => {
             const date = new Date(dateString);
 
             // Define options for formatting with proper TypeScript types
-            const options: Intl.DateTimeFormatOptions = { 
+            const options: Intl.DateTimeFormatOptions = {
                 weekday: 'long',    // Must be 'long', 'short', or 'narrow'
                 month: 'long',      // Must be 'numeric', '2-digit', 'long', 'short', or 'narrow'
                 day: 'numeric',     // Must be 'numeric' or '2-digit'
@@ -74,13 +74,12 @@ export const PostModal = ({post}: PostProps) => {
 
     return (
         <motion.div className='bg-[rgba(43,43,43,0.3)] absolute w-full h-full flex items-center justify-center py-9' initial={{ opacity: 0}} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.1 }}>
-            <motion.div className={`bg-white bg-clip-padding backdrop-filter backdrop-blur-lg rounded-lg w-180 h-220 mx-4 font-medium gap-2 border border-neutral-400 overflow-hidden ${imageOpen && 'w-max h-max max-w-[80%] max-h-[95%] border-2 border-white'} flex flex-col max-h-[100dvh]`} initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} transition={{ duration: 0.1 }} ref={postModalRef} style={{backgroundColor: 'rgba(255, 255, 255, 0.85)'}}>
+            <motion.div className={`bg-white bg-clip-padding backdrop-filter backdrop-blur-lg rounded-lg w-180 h-220 mx-4 font-medium gap-2 border border-neutral-400 overflow-y-auto overflow-x-hidden custom-scrollbar ${imageOpen && 'w-max h-max max-w-[80%] max-h-[95%] border-2 border-white'} flex flex-col max-h-[100dvh]`} initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} transition={{ duration: 0.1 }} ref={postModalRef} style={{backgroundColor: 'rgba(255, 255, 255, 0.85)'}}>
                 <div className='absolute rounded bg-red-400 hover:bg-red-500 right-2 cursor-pointer text-white z-20 active:scale-90 top-2 max-sm:scale-130 max-sm:active:scale-110 transition-[scale]' onClick={() => {setModalOpen(false); setSelectedPost(null);}}>
                     <X />
                 </div>
 
-                <div className={`relative ${imageOpen ? 'h-auto' : 'h-80'} overflow-hidden cursor-pointer`} onClick={() => setImageOpen(prev => !prev)} title='Click to Zoom In/Out'>
-
+                <div className={`relative ${imageOpen ? 'h-auto' : 'h-80'} overflow-hidden cursor-pointer landscape:min-h-55`} onClick={() => setImageOpen(prev => !prev)} title='Click to Zoom In/Out'>
                     {imageLoaded &&
                         (<img 
                             src={post.img} 

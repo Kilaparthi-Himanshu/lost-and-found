@@ -14,18 +14,6 @@ export const PostsSection = () => {
     const [userId, setUserId] = useAtom(userIdAtom);
     const [postsLoading, setPostsLoading] = useAtom(postsLoadingAtom);
 
-    const loaderPost = {
-        "img": "/images/Nature.jpg",
-        "name": "Nature",
-        "description": "A Black Bag with a steel water bottle is lost during the lunch hours on Monday of the 2nd week of March 2025.",
-        "date_lost": "2004-07-17",
-        "time": "15:37",
-        "location": "KRC",
-        "status": "Lost",
-        "email": "hkilapar2@gitam.in",
-        "post_id": "gg1"
-    };
-
     useEffect(() => {
         async function createSignedUrl(name: string, post_id: string) {
             const supabase = createClient();
@@ -71,7 +59,9 @@ export const PostsSection = () => {
 
             console.log(updatedPosts);
             setPosts(updatedPosts);
-            setPostsLoading(false);
+            setTimeout(() => {
+                setPostsLoading(false);
+            }, 500);
         }
 
         fetchUserIdAndSetPosts();

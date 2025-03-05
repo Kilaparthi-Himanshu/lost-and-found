@@ -26,7 +26,7 @@ export const Post = ({ post }: PostProps) => {
     const handleClick = () => {
         setSelectedPost(post);
         setModalOpen(true);
-      };
+    };
 
     return (
         <div className='border border-neutral-400 xl:min-h-[308px] h-max w-full rounded-lg p-2 flex max-xl:flex-col gap-2 bg-neutral-100 hover:bg-sky-100 cursor-pointer transition-[background]' onClick={handleClick}>

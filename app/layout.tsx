@@ -24,11 +24,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased selection:bg-teal-500 selection:text-white overflow-hidden`}
-      >
-        {children}
-      </body>
+         <head>
+            <title>Lost And Found Board</title>
+        </head>
+        <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased selection:bg-teal-500 selection:text-white overflow-hidden`}
+        >
+            {children}
+        </body>
     </html>
   );
 }

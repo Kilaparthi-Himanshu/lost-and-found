@@ -24,7 +24,6 @@ export const CreatePostModal = () => {
             const supabase = createClient();
             const file = image;
             if (!file) return;
-            // const fileExt = file?.name.split('.').pop();
             const post_id = Math.random();
             const fileName = `${file.name}`;
             const filePath = `user_uploads/${post_id}/${fileName}`;
@@ -94,12 +93,12 @@ export const CreatePostModal = () => {
 
     return (
         <motion.div className='bg-[rgba(43,43,43,0.3)] absolute w-full h-full flex items-center justify-center py-9 px-2' initial={{ opacity: 0}} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.1 }}>
-                <motion.form className='bg-white w-[800px] h-max rounded-lg flex flex-col items-center p-4 font-quicksand gap-4 max-h-[99dvh] absolute max-w-[100dvw] max-sm:scale-95 max-sm:scale-y-100 border border-neutral-400' initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} transition={{ duration: 0.1 }} onSubmit={handleSubmit}>
+                <motion.form className='bg-white w-[800px] h-max rounded-lg flex flex-col items-center p-4 font-quicksand gap-4 max-h-[99dvh] absolute max-w-[99dvw] max-sm:scale-95 max-sm:scale-y-100 border border-neutral-400 overflow-y-auto overflow-x-hidden custom-scrollbar' initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} transition={{ duration: 0.1 }} onSubmit={handleSubmit}>
                     <div className='absolute rounded bg-red-400 hover:bg-red-500 right-2 cursor-pointer text-white z-20 active:scale-90 top-2 max-sm:scale-130 max-sm:active:scale-110 transition-[scale]' onClick={() => setModalOpen(false)}>
                         <X />
                     </div>
 
-                    <div className='rounded h-[180px] w-[300px] sm:w-[400px] sm:h-[240px] cursor-pointer border-2 border-stone-400 border-dashed flex items-center justify-center active:border-blue-400 transition-[border] min-h-[90px]'
+                    <div className='rounded h-[180px] w-[300px] sm:w-[400px] sm:h-[240px] cursor-pointer border-2 border-stone-400 border-dashed flex items-center justify-center active:border-blue-400 transition-[border] min-h-[90px] landscape:min-h-50'
                         onClick={() => imageInputRef.current?.click()}
                         style={{ 
                             backgroundImage: image ? `url(${URL.createObjectURL(image)})` : 'none',
@@ -113,7 +112,7 @@ export const CreatePostModal = () => {
                         <p className={`font-bold ml-2 text-xl ${image && 'hidden'}`}>Upload An Image</p>
                     </div>
 
-                    <div className='bg-neutral-400 h-[1px] w-[96%] self-center' />
+                    <div className='bg-neutral-400 h-[1px] w-[96%] self-center sm:mt-4' />
 
                     <div className='flex-1 w-full rounded-lg grid grid-cols-[160px_1fr] gap-y-4 p-4 max-sm:p-1 font-medium text-xl max-sm:text-lg items-center max-sm:grid-cols-[100px_1fr] text-wrap'>
                         <span>Title:</span>
