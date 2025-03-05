@@ -79,13 +79,13 @@ export const PostModal = ({post}: PostProps) => {
                     <X />
                 </div>
 
-                <div className={`relative h-80 ${imageOpen && 'w-full h-full'} overflow-hidden cursor-pointer`} onClick={() => setImageOpen(prev => !prev)} title='Click to Zoom In/Out'>
+                <div className={`relative ${imageOpen ? 'h-auto' : 'h-80'} overflow-hidden cursor-pointer`} onClick={() => setImageOpen(prev => !prev)} title='Click to Zoom In/Out'>
 
                     {imageLoaded &&
                         (<img 
                             src={post.img} 
                             alt={post.name}
-                            className='object-cover w-full h-full'
+                            className={`${imageOpen ? 'max-h-[95dvh] object-contain' : 'object-cover h-full w-full'}`}
                             onLoad={() => setImageLoaded(true)}
                             loading="lazy" 
                         />)
