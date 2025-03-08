@@ -6,6 +6,9 @@ import { User as UserType }from '@supabase/supabase-js';
 import { LogOut, Mail, User, Calendar } from 'lucide-react';
 import { logout } from '../login/actions';
 import { motion, AnimatePresence } from 'framer-motion';
+import { BsFillFilePostFill } from "react-icons/bs";
+import { FiHome } from "react-icons/fi";
+import { usePathname, useRouter, redirect } from 'next/navigation'; 
 
 export const Account = () => {
     const [accountModalOpen, setAccountModalOpen] = useState(false);
@@ -14,6 +17,14 @@ export const Account = () => {
     const [loading, setLoading] = useState(true);
     const [month, setMonth] = useState('');
     const [year, setYear] = useState<number>();
+
+    const pathname = usePathname();
+    const router = useRouter();
+
+    const handleRedirect = () => {
+        const newPath = pathname === "/" ? "/myposts" : "/";
+        window.location.href = newPath;
+    };
 
     useEffect(() => {
         async function fetchUserData() {
@@ -71,10 +82,21 @@ export const Account = () => {
                             <Mail className='text-blue-500' size={18} />
                             <span className="text-md">Email: <span className="text-blue-500">{user?.email}</span></span>
                         </div>
+
                         <div className='flex flex-row space-x-3 items-center'>
                             <Calendar className='text-blue-500' size={18} />
                             <span className="text-md">Member since: <span>{month} {year}</span></span>
                         </div>
+
+                        <div className='flex flex-row space-x-3 items-center'>
+                            {pathname === "/" ? (
+                                <BsFillFilePostFill className='text-blue-500' size={18} />
+                            ) : (
+                                <FiHome className='text-blue-500' size={18} />
+                            )}
+                            <span onClick={handleRedirect} className="text-md cursor-pointer hover:underline hover:text-blue-500">{pathname === "/" ? "My Posts" : "Home"}</span>
+                        </div>
+
                         <button className="bg-red-500 hover:bg-red-700 text-white font-medium py-2 px-4 rounded flex items-center justify-center space-x-2 transition duration-200 w-full cursor-pointer mb-2" onClick={logout} title='Logout'>
                             <LogOut size={18} />
                             <span>Logout</span>

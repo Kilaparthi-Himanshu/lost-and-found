@@ -30,7 +30,7 @@ export const CreatePostModal = () => {
             const { error: uploadError } = await supabase.storage.from('photos')
                 .upload(filePath, file);
 
-            if(uploadError) {
+            if (uploadError) {
                 throw uploadError;
             }
 
@@ -90,6 +90,18 @@ export const CreatePostModal = () => {
         }
         createPost(formData);
     }
+
+    useEffect(() => {
+        if (!userId) {
+            async function fetchId() {
+                const supabase = createClient();
+                const {data: {user}} = await supabase.auth.getUser();
+                setUserId(user!.id);
+                console.log(user!.id);
+            }
+            fetchId();
+        }
+    }, []);
 
     return (
         <motion.div className='bg-[rgba(43,43,43,0.3)] absolute w-full h-full flex items-center justify-center py-9 px-2' initial={{ opacity: 0}} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.1 }}>
