@@ -1,12 +1,13 @@
 'use client';
 
 import React, { use, useState } from 'react';
-import { modalOpenAtom, Post as PostFromAtoms, selectedPostAtom, userIdAtom } from '../../Atoms/atoms';
+import { editPostModalOpenAtom, modalOpenAtom, Post as PostFromAtoms, selectedEditPostAtom, selectedPostAtom, userIdAtom } from '../../Atoms/atoms';
 import { useAtom } from 'jotai';
 import { FaRegTrashCan } from "react-icons/fa6";
 import { FaRegEdit } from "react-icons/fa";
 import { createClient } from '@/app/utils/supabase/client';
 import { useConfirmModal } from '@/app/hooks/useConfirmModal';
+import { EditPostModal } from './EditPostModal';
 
 export interface PostProps {
     post: {
@@ -25,17 +26,23 @@ export interface PostProps {
 export const MyPost = ({ post }: PostProps) => {
     const [modalOpen, setModalOpen] = useAtom(modalOpenAtom);
     const [selectedPost, setSelectedPost] = useAtom(selectedPostAtom);
-    const [userId, setUserId] = useAtom(userIdAtom);
     const {confirm, ConfirmModal} = useConfirmModal(
         "Delete", 
         "Cancel", 
         <>Are you sure you want to delete this post?<br />This action cannot be reversed.</>
     );
+    const [editPostModalOpen, setEditPostModalOpen] = useAtom(editPostModalOpenAtom);
+    const [selectedEditPost, setSelectedEditPost] = useAtom(selectedEditPostAtom);
 
     const handleClick = () => {
         setSelectedPost(post);
         setModalOpen(true);
     };
+
+    const handelEdit = () => {
+        setSelectedEditPost(post);
+        setEditPostModalOpen(true);
+    }
 
     const handleDelete = async (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -88,9 +95,9 @@ export const MyPost = ({ post }: PostProps) => {
 
     return (
         <>
-            <div className='border border-neutral-400 h-full w-full rounded-lg p-2 flex max-xl:flex-col gap-2 bg-neutral-100 hover:bg-sky-100 cursor-pointer transition-[background] relative max-h-150' onClick={handleClick}>
+            <div className='border border-neutral-400 h-full w-full rounded-lg p-2 flex max-xl:flex-col gap-2 bg-neutral-100 hover:bg-sky-100 cursor-pointer transition-[background] relative xl:max-h-100' onClick={handleClick}>
                 <img
-                    className='rounded-lg object-cover h-full max-h-80 max-w-[400px] max-xl:max-w-full shadow-lg'
+                    className='rounded-lg object-cover h-full max-xl:max-h-80 max-h-100 max-w-[400px] max-xl:max-w-full shadow-lg'
                     src={post.img}
                     alt="Picture of the author"
                 />
@@ -111,13 +118,14 @@ export const MyPost = ({ post }: PostProps) => {
                         <button onClick={handleDelete} className="cursor-pointer hover:text-red-500 active:scale-95">
                             <FaRegTrashCan size={20}/>
                         </button>
-                        <button className="cursor-pointer hover:text-sky-500 active:scale-95">
+                        <button onClick={handelEdit} className="cursor-pointer hover:text-sky-500 active:scale-95">
                             <FaRegEdit size={20}/>
                         </button>
                     </div>
                 </div>
             </div>
             <ConfirmModal />
+            {editPostModalOpen && selectedEditPost && <EditPostModal post={selectedEditPost} />}
         </>
     );
 }

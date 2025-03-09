@@ -39,7 +39,7 @@ export const MyPostsLoadingSkeleton = () => {
                     <div className='w-[30%] h-10 text-2xl'>
                         <Skeleton className="h-full w-full" />
                     </div>
-                    <div className='w-[90%] h-45 text-2xl'>
+                    <div className='w-[90%] h-45 text-2xl'> 
                         <Skeleton className="h-full w-full" />
                     </div>
                     <div className='flex gap-2'>

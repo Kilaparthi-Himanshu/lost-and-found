@@ -29,7 +29,11 @@ export const modalOpenAtom = atom<boolean>(false);
 
 export const createPostModalOpenAtom = atom<boolean>(false);
 
+export const editPostModalOpenAtom = atom<boolean>(false);
+
 export const selectedPostAtom = atom<Post | null>(null);
+
+export const selectedEditPostAtom = atom<Post | null>(null);
 
 export const postsLoadingAtom = atom<boolean>(false);
 
