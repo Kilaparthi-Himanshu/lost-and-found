@@ -8,7 +8,7 @@ import { logout } from '../login/actions';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BsFillFilePostFill } from "react-icons/bs";
 import { FiHome } from "react-icons/fi";
-import { usePathname, useRouter, redirect } from 'next/navigation'; 
+import { usePathname, useRouter, redirect } from 'next/navigation';
 
 export const Account = () => {
     const [accountModalOpen, setAccountModalOpen] = useState(false);
@@ -66,7 +66,7 @@ export const Account = () => {
             </button>
             <AnimatePresence>
             {accountModalOpen && (
-                <motion.div className='absolute w-80 h-max rounded-lg right-8 top-14 bg-clip-padding backdrop-filter backdrop-blur-lg border border-neutral-300 text-black font-quicksand flex flex-col items-center gap-2 font-medium overflow-hidden shadow-xl min-h-38' style={{backgroundColor: 'rgba(255, 255, 255, 0.7)'}} 
+                <motion.div className='absolute w-80 h-max rounded-lg right-8 top-14 bg-clip-padding backdrop-filter backdrop-blur-lg border border-neutral-300 text-black font-quicksand flex flex-col items-center gap-2 font-medium overflow-hidden shadow-xl min-h-38 z-200' style={{backgroundColor: 'rgba(255, 255, 255, 0.7)'}} 
                     initial={{ opacity: 0, y: -10 }} 
                     animate={{ opacity: 1, y: 0 }} 
                     exit={{ opacity: 0, y: -10 }} 

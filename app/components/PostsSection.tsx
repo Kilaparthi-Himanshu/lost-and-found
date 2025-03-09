@@ -59,9 +59,7 @@ export const PostsSection = () => {
 
             console.log(updatedPosts);
             setPosts(updatedPosts);
-            setTimeout(() => {
-                setPostsLoading(false);
-            }, 500);
+            setPostsLoading(false);
         }
 
         fetchUserIdAndSetPosts();
@@ -74,6 +72,7 @@ export const PostsSection = () => {
                 !postsLoading ? (
                     posts
                     .filter(post => post.name.toLowerCase().includes(search.toLowerCase()))
+                    .reverse()
                     .map(post => (
                         <Post post={post} key={post.name} />
                     ))
