@@ -28,15 +28,26 @@ export const Account = () => {
 
     const updateTheme = (newTheme: string) => {
         const root = window.document.documentElement;
+
+        // Add class to prevent transitions
+        root.classList.add('[&_*]:!transition-none');
+
+        // Remove theme
         root.classList.remove('light', 'dark');
 
+        // Add new theme
         if (newTheme === 'system') {
-          const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-          root.classList.add(systemTheme);
+            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            root.classList.add(systemTheme);
         } else {
-          root.classList.add(newTheme);
+            root.classList.add(newTheme);
         }
         localStorage.setItem('theme', newTheme);
+
+        // Remove the transition-blocking class after a short delay
+        setTimeout(() => {
+            root.classList.remove('[&_*]:!transition-none');
+        }, 0);
     }
 
     useEffect(() => {
