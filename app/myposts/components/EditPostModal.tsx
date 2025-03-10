@@ -158,14 +158,14 @@ export const EditPostModal = ({post}: PostProps) => {
                         <input required name="location" placeholder='Where was it lost?' type="text" className='text-lg font-medium p-2 w-70 max-sm:max-w-max h-10 border border-stone-500 rounded outline-none focus:border-blue-600 focus:border-1 focus:ring-0 focus:ring-blue-500 ring-offset-3 focus:ring-offset-blue-300 input-border-animation' defaultValue={post.location} />
 
                         <span>Date:</span>
-                        <input required name="date_lost" type="date" className='text-lg font-medium p-2 w-50 h-10 border border-stone-500 rounded outline-none cursor-pointer focus:border-blue-600 focus:border-1 focus:ring-0 focus:ring-blue-500 ring-offset-3 focus:ring-offset-blue-300 input-border-animation' defaultValue={post.date_lost} />
+                        <input required name="date_lost" type="date" className='text-lg font-medium p-2 w-50 h-10 border border-stone-500 rounded outline-none cursor-pointer focus:border-blue-600 focus:border-1 focus:ring-0 focus:ring-blue-500 ring-offset-3 focus:ring-offset-blue-300 input-border-animation white-picker' defaultValue={post.date_lost} />
 
                         <span>Time:</span>
-                        <input required name="time" type="time" className='text-lg font-medium p-2 w-40 h-10 border border-stone-500 rounded outline-none cursor-pointer focus:border-blue-600 focus:border-1 focus:ring-0 focus:ring-blue-500 ring-offset-3 focus:ring-offset-blue-300 input-border-animation' defaultValue={post.time} />
+                        <input required name="time" type="time" className='text-lg font-medium p-2 w-40 h-10 border border-stone-500 rounded outline-none cursor-pointer focus:border-blue-600 focus:border-1 focus:ring-0 focus:ring-blue-500 ring-offset-3 focus:ring-offset-blue-300 input-border-animation white-picker' defaultValue={post.time} />
 
                         <span>Status:</span>
                         <div className='flex justify-between max-sm:justify-start'>
-                            <select required name="status" className='text-lg font-medium p-2 w-30 h-10 border border-stone-500 rounded outline-none cursor-pointer focus:border-blue-600 focus:border-1 focus:ring-0 focus:ring-blue-500 ring-offset-3 focus:ring-offset-blue-300 input-border-animation' defaultValue={post.status}>
+                            <select required name="status" className='text-lg font-medium p-2 w-30 h-10 border border-stone-500 rounded outline-none cursor-pointer focus:border-blue-600 focus:border-1 focus:ring-0 focus:ring-blue-500 ring-offset-3 focus:ring-offset-blue-300 input-border-animation dark:[background-color:_rgb(40,_40,_40)]' defaultValue={post.status}>
                                 <option value="Lost" title="You have lost an item">Lost</option>
                                 <option value="Find" title="You have found someone's item">Find</option>
                             </select>

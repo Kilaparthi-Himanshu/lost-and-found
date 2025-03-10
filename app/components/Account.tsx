@@ -26,6 +26,26 @@ export const Account = () => {
         window.location.href = newPath;
     };
 
+    const updateTheme = (newTheme: string) => {
+        const root = window.document.documentElement;
+        root.classList.remove('light', 'dark');
+
+        if (newTheme === 'system') {
+          const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          root.classList.add(systemTheme);
+        } else {
+          root.classList.add(newTheme);
+        }
+        localStorage.setItem('theme', newTheme);
+    }
+
+    useEffect(() => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            updateTheme(savedTheme);
+        }
+    }, []);
+
     useEffect(() => {
         async function fetchUserData() {
             try {
@@ -95,6 +115,11 @@ export const Account = () => {
                                 <FiHome className='text-blue-500 dark:text-blue-400' size={18} />
                             )}
                             <span onClick={handleRedirect} className="text-md cursor-pointer hover:underline hover:text-blue-500 dark:hover:text-blue-400">{pathname === "/" ? "My Posts" : "Home"}</span>
+                        </div>
+
+                        <div>
+                            <p className='text-lg font-medium cursor-pointer' onClick={() => updateTheme('light')}>General Light</p>
+                            <p className='text-lg font-medium cursor-pointer' onClick={() => updateTheme('dark')}>General Dark</p>
                         </div>
 
                         <button className="bg-red-500 hover:bg-red-700 text-white font-medium py-2 px-4 rounded flex items-center justify-center space-x-2 transition duration-200 w-full cursor-pointer mb-2" onClick={logout} title='Logout'>

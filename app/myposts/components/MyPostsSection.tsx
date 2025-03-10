@@ -67,7 +67,6 @@ export const MyPostsSection = () => {
     }, []);
 
     return (
-
         <div className={`grid grid-cols-2 gap-4 w-full p-10 md:p-14 md:pt-6 pt-4 max-h-[calc(100vh-64px)] ${postsLoading ? 'overflow-hidden' : 'overflow-y-auto'} custom-scrollbar`}>
             {
                 !postsLoading ? (
