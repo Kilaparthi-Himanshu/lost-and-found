@@ -81,13 +81,13 @@ export const CreatePostModal = () => {
 
         setCreatePostSpinner(true);
         const formData = new FormData(event.currentTarget);
-        for (let [key, value] of formData.entries()) {
-            console.log(`${key}: ${value}`);
-        }
-        const imageFile = formData.get('image') as File;
-        if (imageFile && imageFile.name) {
-            console.log('Image selected:', imageFile.name);
-        }
+        // for (let [key, value] of formData.entries()) {
+        //     console.log(`${key}: ${value}`);
+        // }
+        // const imageFile = formData.get('image') as File;
+        // if (imageFile && imageFile.name) {
+        //     console.log('Image selected:', imageFile.name);
+        // }
         createPost(formData);
     }
 
@@ -97,15 +97,15 @@ export const CreatePostModal = () => {
                 const supabase = createClient();
                 const {data: {user}} = await supabase.auth.getUser();
                 setUserId(user!.id);
-                console.log(user!.id);
+                // console.log(user!.id);
             }
             fetchId();
         }
     }, []);
 
     return (
-        <motion.div className='bg-[rgba(43,43,43,0.3)] absolute w-full h-full flex items-center justify-center py-9 px-2' initial={{ opacity: 0}} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.1 }}>
-                <motion.form className='bg-white w-[800px] h-max rounded-lg flex flex-col items-center p-4 font-quicksand gap-4 max-h-[99dvh] absolute max-w-[99dvw] max-sm:scale-95 max-sm:scale-y-100 border border-neutral-400 overflow-y-auto overflow-x-hidden custom-scrollbar' initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} transition={{ duration: 0.1 }} onSubmit={handleSubmit}>
+        <motion.div className='bg-[rgba(43,43,43,0.3)] dark:bg-[rgba(10,10,10,0.6)] absolute w-full h-full flex items-center justify-center py-9 px-2' initial={{ opacity: 0}} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.1 }}>
+                <motion.form className='bg-white w-[800px] h-max rounded-lg flex flex-col items-center p-4 font-quicksand gap-4 max-h-[99dvh] absolute max-w-[99dvw] max-sm:scale-95 max-sm:scale-y-100 border border-neutral-400 dark:border-neutral-500 overflow-y-auto overflow-x-hidden custom-scrollbar dark:[background-color:_rgb(30,_30,_30)]' initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} transition={{ duration: 0.1 }} onSubmit={handleSubmit}>
                     <div className='absolute rounded bg-red-500 hover:bg-red-700 right-2 cursor-pointer text-white z-20 active:scale-90 top-2 max-sm:scale-130 max-sm:active:scale-110 transition-[scale]' onClick={() => setModalOpen(false)}>
                         <X />
                     </div>
@@ -140,14 +140,14 @@ export const CreatePostModal = () => {
                         <input required name="location" placeholder='Where was it lost?' type="text" className='text-lg font-medium p-2 w-70 max-sm:max-w-max h-10 border border-stone-500 rounded outline-none focus:border-blue-600 focus:border-1 focus:ring-0 focus:ring-blue-500 ring-offset-3 focus:ring-offset-blue-300 input-border-animation' />
 
                         <span>Date:</span>
-                        <input required name="date_lost" type="date" className='text-lg font-medium p-2 w-50 h-10 border border-stone-500 rounded outline-none cursor-pointer focus:border-blue-600 focus:border-1 focus:ring-0 focus:ring-blue-500 ring-offset-3 focus:ring-offset-blue-300 input-border-animation' />
+                        <input required name="date_lost" type="date" className='text-lg font-medium p-2 w-50 h-10 border border-stone-500 rounded outline-none cursor-pointer focus:border-blue-600 focus:border-1 focus:ring-0 focus:ring-blue-500 ring-offset-3 focus:ring-offset-blue-300 input-border-animation white-picker' />
 
                         <span>Time:</span>
-                        <input required name="time" type="time" className='text-lg font-medium p-2 w-40 h-10 border border-stone-500 rounded outline-none cursor-pointer focus:border-blue-600 focus:border-1 focus:ring-0 focus:ring-blue-500 ring-offset-3 focus:ring-offset-blue-300 input-border-animation' />
+                        <input required name="time" type="time" className='text-lg font-medium p-2 w-40 h-10 border border-stone-500 rounded outline-none cursor-pointer focus:border-blue-600 focus:border-1 focus:ring-0 focus:ring-blue-500 ring-offset-3 focus:ring-offset-blue-300 input-border-animation white-picker' />
 
                         <span>Status:</span>
                         <div className='flex justify-between max-sm:justify-start'>
-                            <select required name="status" className='text-lg font-medium p-2 w-30 h-10 border border-stone-500 rounded outline-none cursor-pointer focus:border-blue-600 focus:border-1 focus:ring-0 focus:ring-blue-500 ring-offset-3 focus:ring-offset-blue-300 input-border-animation'>
+                            <select required name="status" className='text-lg font-medium p-2 w-30 h-10 border border-stone-500 rounded outline-none cursor-pointer focus:border-blue-600 focus:border-1 focus:ring-0 focus:ring-blue-500 ring-offset-3 focus:ring-offset-blue-300 input-border-animation dark:[background-color:_rgb(40,_40,_40)]'>
                                 <option value="Lost" title="You have lost an item">Lost</option>
                                 <option value="Find" title="You have found someone's item">Find</option>
                             </select>

@@ -39,7 +39,8 @@ export const MyPost = ({ post }: PostProps) => {
         setModalOpen(true);
     };
 
-    const handelEdit = () => {
+    const handelEdit = (e: React.MouseEvent) => {
+        e.stopPropagation();
         setSelectedEditPost(post);
         setEditPostModalOpen(true);
     }
@@ -53,7 +54,7 @@ export const MyPost = ({ post }: PostProps) => {
 
         try {
             const folderPath = `user_uploads/${post.post_id}/`;
-            console.log(folderPath);
+            // console.log(folderPath);
 
             const supabase = createClient();
 
@@ -95,13 +96,13 @@ export const MyPost = ({ post }: PostProps) => {
 
     return (
         <>
-            <div className='border border-neutral-400 h-full w-full rounded-lg p-2 flex max-xl:flex-col gap-2 bg-neutral-100 hover:bg-sky-100 cursor-pointer transition-[background] relative xl:max-h-100' onClick={handleClick}>
+            <div className='border border-neutral-400 dark:border-neutral-600 dark:hover:bg-neutral-800 h-full w-full rounded-lg p-2 flex max-xl:flex-col gap-2 bg-neutral-100 dark:bg-neutral-900 hover:bg-sky-100 cursor-pointer transition-[background] relative xl:max-h-100' onClick={handleClick}>
                 <img
                     className='rounded-lg object-cover h-full max-xl:max-h-80 max-h-100 max-w-[400px] max-xl:max-w-full shadow-lg'
                     src={post.img}
                     alt="Picture of the author"
                 />
-                <div className='border border-neutral-400 flex-1 rounded-lg max-sm:py-2 p-4 font-medium flex flex-col h-full text-lg justify-between gap-2 w-full'>
+                <div className='border border-neutral-400 dark:border-neutral-600 flex-1 rounded-lg max-sm:py-2 p-4 font-medium flex flex-col h-full text-lg justify-between gap-2 w-full'>
                     <div className='font-bold text-2xl'>
                         {post.name}
                     </div>
@@ -114,7 +115,7 @@ export const MyPost = ({ post }: PostProps) => {
                     <div>
                         Status: <a className={`bg-green-200 ${post.status === "Lost" && 'bg-red-200 text-red-600'} rounded p-1 px-2 w-max text-green-600`}>{post.status}</a>
                     </div>
-                    <div className='absolute w-auto max-w-20 h-max gap-2 right-3 bottom-3 flex items-center justify-around max-sm:relative max-sm:mt-4 sm:m-2 bg-neutral-200 p-1 rounded'>
+                    <div className='absolute w-auto max-w-20 h-max gap-2 right-3 bottom-3 flex items-center justify-around max-sm:relative max-sm:mt-4 sm:m-2 border border-neutral-400 dark:border-neutral-600 p-1 rounded'>
                         <button onClick={handleDelete} className="cursor-pointer hover:text-red-500 active:scale-95">
                             <FaRegTrashCan size={20}/>
                         </button>

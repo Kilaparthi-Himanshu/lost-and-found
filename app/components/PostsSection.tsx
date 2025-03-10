@@ -57,7 +57,7 @@ export const PostsSection = () => {
                 })
             );
 
-            console.log(updatedPosts);
+            // console.log(updatedPosts);
             setPosts(updatedPosts);
             setPostsLoading(false);
         }
@@ -67,7 +67,7 @@ export const PostsSection = () => {
 
     return (
 
-        <div className={`flex flex-col gap-4 max-sm:border-0 border-x-2 border-neutral-300 w-full sm:w-[600px] md:w-[700px] xl:w-[1000px] p-10 md:p-14 md:pt-6 pt-4 h-[calc(100vh-64px)] ${postsLoading ? 'overflow-hidden' : 'overflow-y-auto'} custom-scrollbar`}>
+        <div className={`flex flex-col gap-4 max-sm:border-0 border-x-2 border-neutral-300 w-full sm:w-[600px] md:w-[700px] xl:w-[1000px] p-10 md:p-14 md:pt-6 pt-4 h-[calc(100vh-64px)] ${postsLoading ? 'overflow-hidden' : 'overflow-y-auto'} custom-scrollbar dark:border-neutral-600`}>
             {
                 !postsLoading ? (
                     posts

@@ -91,7 +91,7 @@ export const EditPostModal = ({post}: PostProps) => {
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
-            console.log(file);
+            // console.log(file);
             setImage(file);
         }
     }
@@ -105,20 +105,23 @@ export const EditPostModal = ({post}: PostProps) => {
         }
 
         setCreatePostSpinner(true);
+
         const formData = new FormData(event.currentTarget);
-        for (let [key, value] of formData.entries()) {
-            console.log(`${key}: ${value}`);
-        }
-        const imageFile = formData.get('image') as File;
-        if (imageFile && imageFile.name) {
-            console.log('Image selected:', imageFile.name);
-        }
+
+        // for (let [key, value] of formData.entries()) {
+        //     console.log(`${key}: ${value}`);
+        // }
+
+        // const imageFile = formData.get('image') as File;
+        // if (imageFile && imageFile.name) {
+        //     console.log('Image selected:', imageFile.name);
+        // }
         editPost(formData);
     }
 
     return (
-        <motion.div className='bg-[rgba(43,43,43,0.3)] absolute w-full h-full flex items-center justify-center py-9 px-2 left-0 top-0 z-200' initial={{ opacity: 0}} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.1 }}>
-                <motion.form className='bg-white w-[800px] h-max rounded-lg flex flex-col items-center p-4 font-quicksand gap-4 max-h-[99dvh] absolute max-w-[99dvw] max-sm:scale-95 max-sm:scale-y-100 border border-neutral-400 overflow-y-auto overflow-x-hidden custom-scrollbar' initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} transition={{ duration: 0.1 }} onSubmit={handleSubmit}>
+        <motion.div className='bg-[rgba(43,43,43,0.3)] dark:bg-[rgba(10,10,10,0.2)] absolute w-full h-full flex items-center justify-center py-9 px-2 left-0 top-0 z-200' initial={{ opacity: 0}} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.1 }}>
+                <motion.form className='bg-white w-[800px] h-max rounded-lg flex flex-col items-center p-4 font-quicksand gap-4 max-h-[99dvh] absolute max-w-[99dvw] max-sm:scale-95 max-sm:scale-y-100 border border-neutral-400 dark:border-neutral-500 overflow-y-auto overflow-x-hidden custom-scrollbar dark:[background-color:_rgb(30,_30,_30)]' initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} transition={{ duration: 0.1 }} onSubmit={handleSubmit}>
                     <div className='absolute rounded bg-red-500 hover:bg-red-700 right-2 cursor-pointer text-white z-20 active:scale-90 top-2 max-sm:scale-130 max-sm:active:scale-110 transition-[scale]' onClick={() => setModalOpen(false)}>
                         <X />
                     </div>
