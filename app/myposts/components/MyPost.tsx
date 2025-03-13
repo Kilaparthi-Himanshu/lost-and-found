@@ -102,7 +102,7 @@ export const MyPost = ({ post }: PostProps) => {
                     src={post.img}
                     alt="Picture of the author"
                 />
-                <div className='border border-neutral-400 flex-1 rounded-lg max-sm:py-2 p-4 font-medium flex flex-col h-full text-lg justify-between gap-2 w-full'>
+                <div className='border border-neutral-400 dark:border-neutral-600 flex-1 rounded-lg max-sm:py-2 p-4 font-medium flex flex-col h-full text-lg justify-between gap-2 w-full'>
                     <div className='font-bold text-2xl'>
                         {post.name}
                     </div>
