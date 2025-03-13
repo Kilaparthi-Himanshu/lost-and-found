@@ -9,6 +9,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { BsFillFilePostFill } from "react-icons/bs";
 import { FiHome } from "react-icons/fi";
 import { usePathname, useRouter, redirect } from 'next/navigation';
+import { MdSunny } from "react-icons/md";
+import { IoMdMoon } from "react-icons/io";
+import { LuPaintRoller } from "react-icons/lu";
 
 export const Account = () => {
     const [accountModalOpen, setAccountModalOpen] = useState(false);
@@ -97,7 +100,7 @@ export const Account = () => {
             </button>
             <AnimatePresence>
             {accountModalOpen && (
-                <motion.div className='absolute w-80 h-max rounded-lg right-8 top-14 bg-clip-padding backdrop-filter backdrop-blur-lg border border-neutral-300 dark:border-neutral-500 text-black font-quicksand flex flex-col items-center gap-2 font-medium overflow-hidden shadow-xl min-h-48 z-200 [background-color:_rgba(255,_255,_255,_0.7)] dark:[background-color:_rgba(60,_60,_60,_0.7)]'
+                <motion.div className='absolute w-80 rounded-lg right-8 top-14 bg-clip-padding backdrop-filter backdrop-blur-lg border border-neutral-300 dark:border-neutral-500 text-black font-quicksand flex flex-col items-center gap-2 font-medium overflow-hidden drop-shadow-2xl z-200 [background-color:_rgba(255,_255,_255,_0.7)] dark:[background-color:_rgba(60,_60,_60,_0.7)]'
                     initial={{ opacity: 0, y: -10 }} 
                     animate={{ opacity: 1, y: 0 }} 
                     exit={{ opacity: 0, y: -10 }} 
@@ -128,9 +131,15 @@ export const Account = () => {
                             <span onClick={handleRedirect} className="text-md cursor-pointer hover:underline hover:text-blue-500 dark:hover:text-blue-400">{pathname === "/" ? "My Posts" : "Home"}</span>
                         </div>
 
-                        <div>
-                            <p className='text-lg font-medium cursor-pointer' onClick={() => updateTheme('light')}>General Light</p>
-                            <p className='text-lg font-medium cursor-pointer' onClick={() => updateTheme('dark')}>General Dark</p>
+                        <div className='flex flex-row space-x-3 items-center'>
+                            <LuPaintRoller className='text-blue-500 dark:text-blue-400' size={18} />
+                            <p className='mr-4'>
+                                Theme: 
+                            </p>
+                            <div className='flex gap-4 items-center'>
+                                <MdSunny className='size-5 cursor-pointer rounded-full outline-2 outline-blue-400 outline-offset-2 dark:outline-0' onClick={() => updateTheme('light')} />
+                                <IoMdMoon className='size-5 cursor-pointer rounded-full dark:outline-2 outline-blue-400 outline-offset-2' onClick={() => updateTheme('dark')} />
+                            </div>
                         </div>
 
                         <button className="bg-red-500 hover:bg-red-700 text-white font-medium py-2 px-4 rounded flex items-center justify-center space-x-2 transition duration-200 w-full cursor-pointer mb-2" onClick={logout} title='Logout'>

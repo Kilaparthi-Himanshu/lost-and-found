@@ -29,7 +29,7 @@ export default function LoginPage() {
         <div className="bubble bubble-11"></div>
         <div className="bubble bubble-12"></div>
         <div className='w-screen h-[100dvh] backdrop-blur-sm flex items-center justify-center'>
-            <form className="border-2 w-100 h-120 rounded-lg flex flex-col  items-center p-7 pt-5 bg-white bg-clip-padding backdrop-filter backdrop-blur-lg px-8 mx-2" style={{backgroundColor: 'rgba(255, 255, 255, 0.3)'}}>
+            <form className="border-2 border-neutral-200 w-100 h-120 rounded-lg flex flex-col  items-center p-7 pt-5 bg-white bg-clip-padding backdrop-filter backdrop-blur-lg px-8 mx-2" style={{backgroundColor: 'rgba(255, 255, 255, 0.3)'}}>
                 <motion.label htmlFor="signup" className='flex-[0.3] text-2xl font-bold text-stone-100 underline'
                     key={userAction}
                     initial={{ opacity: 0, y: 20 }}
