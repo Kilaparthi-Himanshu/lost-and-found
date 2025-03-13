@@ -73,8 +73,8 @@ export const PostModal = ({post}: PostProps) => {
         }
 
     return (
-        <motion.div className='bg-[rgba(43,43,43,0.3)] absolute w-full h-full flex items-center justify-center py-9' initial={{ opacity: 0}} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.1 }}>
-            <motion.div className={`bg-white bg-clip-padding backdrop-filter backdrop-blur-lg rounded-lg w-180 h-220 mx-4 font-medium gap-2 border border-neutral-400 overflow-y-auto overflow-x-hidden custom-scrollbar ${imageOpen && 'w-max h-max max-w-[80%] max-h-[95%] border-2 border-white'} flex flex-col max-h-[100dvh]`} initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} transition={{ duration: 0.1 }} ref={postModalRef} style={{backgroundColor: 'rgba(255, 255, 255, 0.85)'}}>
+        <motion.div className='bg-[rgba(43,43,43,0.3)] dark:bg-[rgba(10,10,10,0.6)] absolute w-full h-full flex items-center justify-center py-9' initial={{ opacity: 0}} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.1 }}>
+            <motion.div className={`bg-white bg-clip-padding backdrop-filter backdrop-blur-lg rounded-lg w-180 h-220 mx-4 font-medium gap-2 border border-neutral-400 dark:border-neutral-500 overflow-y-auto overflow-x-hidden custom-scrollbar ${imageOpen && 'w-max h-max max-w-[80%] max-h-[95%] border-2 border-white'} flex flex-col max-h-[100dvh] [background-color:_rgba(255,_255,_255,_0.85)] dark:[background-color:_rgba(60,_60,_60,_0.7)]`} initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} transition={{ duration: 0.1 }} ref={postModalRef}>
                 <div className='absolute rounded bg-red-400 hover:bg-red-500 right-2 cursor-pointer text-white z-20 active:scale-90 top-2 max-sm:scale-130 max-sm:active:scale-110 transition-[scale]' onClick={() => {setModalOpen(false); setSelectedPost(null);}}>
                     <X />
                 </div>
@@ -104,29 +104,29 @@ export const PostModal = ({post}: PostProps) => {
                         </div>
 
                         <div className='grid grid-cols-[160px_1fr] gap-y-4 w-full p-4 flex-1 text-lg max-sm:text-[16px]'>
-                            <div className='font-bold text-gray-800 self-center'>Date Lost:</div>
+                            <div className='font-bold text-gray-800 dark:text-stone-100 self-center'>Date Lost:</div>
                             <div className='self-center'>
                                 <span className='py-1 rounded-full inline-block'>{formatDate(post.date_lost)}</span>
                             </div>
 
-                            <div className='font-bold text-gray-800 self-center'>Time:</div>
+                            <div className='font-bold text-gray-800 dark:text-stone-100 self-center'>Time:</div>
                             <div className='self-center'>
                                 <span className='py-1 rounded-full inline-block'>{formatTime(post.time)}</span>
                             </div>
 
-                            <div className='font-bold text-gray-800 self-center'>Location:</div>
+                            <div className='font-bold text-gray-800 dark:text-stone-100 self-center'>Location:</div>
                             <div className='self-center'>
                                 <span className='bg-blue-500 text-white px-3 py-1 rounded-full inline-block'>{post.location}</span>
                             </div>
 
-                            <div className='font-bold text-gray-800 self-center'>Status:</div>
+                            <div className='font-bold text-gray-800 dark:text-stone-100 self-center'>Status:</div>
                             <div className='self-center'>
                                 <span className={`${post.status === "Lost" ? 'bg-red-500' : 'bg-green-500'} text-white px-3 py-1 rounded inline-block`}>{post.status}</span>
                             </div>
 
-                            <div className='font-bold text-gray-800 self-center'>Email:</div>
+                            <div className='font-bold text-gray-800 dark:text-stone-100 self-center'>Email:</div>
                             <div className='self-center'>
-                                <span className='py-1 rounded text-black'>{post.email}</span>
+                                <span className='py-1 rounded text-black dark:text-stone-100 '>{post.email}</span>
                             </div>
                         </div>
                     </div>

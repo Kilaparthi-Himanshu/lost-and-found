@@ -26,6 +26,16 @@ export default function RootLayout({
     <html lang="en">
          <head>
             <title>Lost And Found Board</title>
+            <script dangerouslySetInnerHTML={{
+            __html: `
+                try {
+                    const theme = localStorage.getItem('theme');
+                    if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                        document.documentElement.classList.add('dark');
+                    }
+                } catch (e) {}
+            `
+        }}></script>
         </head>
         <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased selection:bg-teal-500 selection:text-white overflow-hidden`}

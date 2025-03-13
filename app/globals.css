@@ -40,6 +40,10 @@
     .parent:has(:hover) {
         padding-right: 10px; /* Adjust this value */
     }
+
+    .white-picker {
+        @apply dark:[&::-webkit-calendar-picker-indicator]:invert dark:[&::-webkit-calendar-picker-indicator]:cursor-pointer;
+    }
 }
 
 @layer base {
