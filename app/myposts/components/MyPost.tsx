@@ -102,7 +102,7 @@ export const MyPost = ({ post }: PostProps) => {
                     alt="Picture of the author"
                 />
                 <div className='border border-neutral-400 flex-1 rounded-lg max-sm:py-2 p-4 font-medium flex flex-col h-full text-lg justify-between gap-2 w-full'>
-                    <div className='font-bold text-2xl'>
+                    <div className='font-bold text-2xl max-sm:overflow-hidden'>
                         {post.name}
                     </div>
                     <div className='font-normal line-clamp-4'>
