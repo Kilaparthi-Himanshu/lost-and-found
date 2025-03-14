@@ -12,6 +12,7 @@ export const PostsSection = () => {
     const [posts, setPosts] = useAtom<AtomPostInterface[]>(postsAtom);
     const [search, setSearch] = useAtom(searchAtom);
     const [userId, setUserId] = useAtom(userIdAtom);
+
     const { isLoading } = useGetUserIdAndPosts({
         onSuccess: (data) => {
             if (data?.posts && data?.user) {

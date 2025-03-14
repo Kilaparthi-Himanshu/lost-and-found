@@ -1,13 +1,15 @@
 'use client';
 
 import React from 'react';
-import { editPostModalOpenAtom, modalOpenAtom, Post as PostFromAtoms, selectedEditPostAtom, selectedPostAtom } from '../../Atoms/atoms';
+import { createPostSpinnerAtom, editPostModalOpenAtom, modalOpenAtom, Post as PostFromAtoms, selectedEditPostAtom, selectedPostAtom } from '../../Atoms/atoms';
 import { useAtom } from 'jotai';
 import { FaRegTrashCan } from "react-icons/fa6";
 import { FaRegEdit } from "react-icons/fa";
 import { createClient } from '@/app/utils/supabase/client';
 import { useConfirmModal } from '@/app/utils/hooks/useConfirmModal';
 import { EditPostModal } from './EditPostModal';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { deepEqual } from 'assert';
 
 export interface PostProps {
     post: {
@@ -33,28 +35,19 @@ export const MyPost = ({ post }: PostProps) => {
     );
     const [editPostModalOpen, setEditPostModalOpen] = useAtom(editPostModalOpenAtom);
     const [selectedEditPost, setSelectedEditPost] = useAtom(selectedEditPostAtom);
+    const [createPostSpinner, setCreatePostSpinner] = useAtom(createPostSpinnerAtom);
 
-    const handleClick = () => {
-        setSelectedPost(post);
-        setModalOpen(true);
-    };
+    const queryClient = useQueryClient();
+    const { mutateAsync: removePost } = useMutation({
+        mutationFn: () => deletePost(),
+        onSuccess: () => {
+            queryClient.invalidateQueries(["posts"]);
+        }
+    });
 
-    const handelEdit = (e: React.MouseEvent) => {
-        e.stopPropagation();
-        setSelectedEditPost(post);
-        setEditPostModalOpen(true);
-    }
-
-    const handleDelete = async (e: React.MouseEvent) => {
-        e.stopPropagation();
-
-        const confirmedDelete = await confirm();
-
-        if (!confirmedDelete) return;
-
+    const deletePost = async () => {
         try {
             const folderPath = `user_uploads/${post.post_id}/`;
-            // console.log(folderPath);
 
             const supabase = createClient();
 
@@ -87,11 +80,33 @@ export const MyPost = ({ post }: PostProps) => {
                 .match({post_id: post.post_id});
             if (tableDeleteError) throw tableDeleteError;
 
-            window.location.reload();
-
+            setCreatePostSpinner(false);
+            // window.location.reload();
         } catch (error) {
             throw error;
         }
+    }
+
+    const handleClick = () => {
+        setSelectedPost(post);
+        setModalOpen(true);
+    };
+
+    const handelEdit = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setSelectedEditPost(post);
+        setEditPostModalOpen(true);
+    }
+
+    const handleDelete = async (e: React.MouseEvent) => {
+        e.stopPropagation();
+
+        const confirmedDelete = await confirm();
+
+        if (!confirmedDelete) return;
+
+        setCreatePostSpinner(true);
+        removePost();
     }
 
     return (

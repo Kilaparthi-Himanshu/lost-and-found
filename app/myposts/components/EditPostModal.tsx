@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { X, Image } from 'lucide-react';
 import { createClient } from '../../utils/supabase/client';
 import { redirect, useRouter } from "next/navigation";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const EditPostModal = ({post}: PostProps) => {
 
@@ -20,7 +21,25 @@ export const EditPostModal = ({post}: PostProps) => {
 
     useEffect(() => {
         setImageUrl(post.img);
+
+        if (!userId) {
+            async function fetchId() {
+                const supabase = createClient();
+                const {data: {user}} = await supabase.auth.getUser();
+                setUserId(user!.id);
+                // console.log(user!.id);
+            }
+            fetchId();
+        }
     }, []);
+
+    const queryClient = useQueryClient();
+    const { mutateAsync: changePost } = useMutation({
+        mutationFn: (formData: FormData) => editPost(formData),
+        onSuccess: () => {
+            queryClient.invalidateQueries(["posts"]);
+        }
+    });
 
     const editPost = async (formData: FormData) => {
         try {
@@ -74,7 +93,6 @@ export const EditPostModal = ({post}: PostProps) => {
                 .from('posts')
                 .update([data])
                 .eq("post_id", post.post_id);
-
             if (updateError) {
                 console.error("Supabase Update Error:", updateError);
                 redirect('/error')
@@ -82,7 +100,7 @@ export const EditPostModal = ({post}: PostProps) => {
 
             setModalOpen(false);
             setCreatePostSpinner(false);
-            window.location.reload();
+            // window.location.reload();
         } catch (err) {
             console.error("Unexpected error:", err);
         }
@@ -116,7 +134,7 @@ export const EditPostModal = ({post}: PostProps) => {
         // if (imageFile && imageFile.name) {
         //     console.log('Image selected:', imageFile.name);
         // }
-        editPost(formData);
+        changePost(formData);
     }
 
     return (

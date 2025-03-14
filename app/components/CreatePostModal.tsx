@@ -9,6 +9,7 @@ import { X, Image } from 'lucide-react';
 import { createClient } from '../utils/supabase/client';
 import { redirect, useRouter } from "next/navigation";
 import { revalidatePath } from 'next/cache';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const CreatePostModal = () => {
 
@@ -18,6 +19,14 @@ export const CreatePostModal = () => {
     const [userId, setUserId] = useAtom(userIdAtom);
     const router = useRouter();
     const [createPostSpinner, setCreatePostSpinner] = useAtom(createPostSpinnerAtom);
+
+    const queryClient = useQueryClient();
+    const { mutateAsync: addPost } = useMutation({
+        mutationFn: (formData: FormData) => createPost(formData),
+        onSuccess: () => {
+            queryClient.invalidateQueries(["posts"]);
+        }
+    });
 
     const createPost = async (formData: FormData) => {
         try {
@@ -57,7 +66,7 @@ export const CreatePostModal = () => {
 
             setModalOpen(false);
             setCreatePostSpinner(false);
-            window.location.reload();
+            // window.location.reload();
         } catch (err) {
             console.error("Unexpected error:", err);
         }
@@ -88,7 +97,7 @@ export const CreatePostModal = () => {
         // if (imageFile && imageFile.name) {
         //     console.log('Image selected:', imageFile.name);
         // }
-        createPost(formData);
+        addPost(formData);
     }
 
     useEffect(() => {

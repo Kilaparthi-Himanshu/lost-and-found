@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Post as AtomPostInterface } from '../../Atoms/atoms';
 import { useAtom } from 'jotai';
-import { postsAtom, postsLoadingAtom, searchAtom } from '../../Atoms/atoms';
+import { postsAtom, searchAtom } from '../../Atoms/atoms';
 import { MyPost } from './MyPost';
 import { MyPostsLoadingSkeleton } from './MyPostsLoadingSkeleton';
 import { useQuery } from '@tanstack/react-query';
@@ -13,7 +13,7 @@ export const MyPostsSection = () => {
     const [posts, setPosts] = useAtom<AtomPostInterface[]>(postsAtom);
     const [search, setSearch] = useAtom(searchAtom);
 
-    const { data, isLoading } = useQuery({
+    const { isLoading } = useQuery({
         queryFn: () => getMyPosts(),
         queryKey: ["posts"],
         onSuccess: (data) => {
