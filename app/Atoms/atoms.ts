@@ -1,9 +1,4 @@
 import { atom } from 'jotai';
-import Nature from '../../public/images/Nature.jpg';
-import Abstract from '../../public/images/Abstract_1.jpg';
-import Bag from '../../public/images/Bag.png'
-import { PostProps } from '../components/Post';
-import { StaticImageData } from 'next/image';
 
 export interface Post {
     img: string;

@@ -1,12 +1,12 @@
 'use client';
 
-import React, { use, useState } from 'react';
-import { editPostModalOpenAtom, modalOpenAtom, Post as PostFromAtoms, selectedEditPostAtom, selectedPostAtom, userIdAtom } from '../../Atoms/atoms';
+import React from 'react';
+import { editPostModalOpenAtom, modalOpenAtom, Post as PostFromAtoms, selectedEditPostAtom, selectedPostAtom } from '../../Atoms/atoms';
 import { useAtom } from 'jotai';
 import { FaRegTrashCan } from "react-icons/fa6";
 import { FaRegEdit } from "react-icons/fa";
 import { createClient } from '@/app/utils/supabase/client';
-import { useConfirmModal } from '@/app/hooks/useConfirmModal';
+import { useConfirmModal } from '@/app/utils/hooks/useConfirmModal';
 import { EditPostModal } from './EditPostModal';
 
 export interface PostProps {
