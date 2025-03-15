@@ -100,13 +100,13 @@ export const Account = () => {
             </button>
             <AnimatePresence>
             {accountModalOpen && (
-                <motion.div className='absolute w-80 rounded-lg right-8 top-14 bg-clip-padding backdrop-filter backdrop-blur-lg border border-neutral-300 dark:border-neutral-500 text-black font-quicksand flex flex-col items-center gap-2 font-medium overflow-hidden drop-shadow-2xl z-200 [background-color:_rgba(255,_255,_255,_0.7)] dark:[background-color:_rgba(60,_60,_60,_0.7)]'
-                    initial={{ opacity: 0, y: -10 }} 
-                    animate={{ opacity: 1, y: 0 }} 
-                    exit={{ opacity: 0, y: -10 }} 
+                <motion.div className='absolute w-80 rounded-lg right-8 top-14 bg-clip-padding backdrop-filter backdrop-blur-lg border border-neutral-300 dark:border-neutral-500 text-black font-quicksand flex flex-col items-center gap-2 font-medium overflow-hidden  drop-shadow-2xl dark:[box-shadow:_0px_0px_10px_rgba(200,_200,_200,_0.2)] z-200 [background-color:_rgba(255,_255,_255,_0.5)] dark:[background-color:_rgba(60,_60,_60,_0.7)]'
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.1 }}
                 >
-                    <div className='bg-gradient-to-r from-blue-600 to-teal-400 p-4 flex justify-center w-full h-max'>
+                    <div className='bg-gradient-to-r from-blue-600 to-teal-400 dark:from-purple-700 dark:to-pink-500 p-4 flex justify-center w-full h-max'>
                         <div className="w-15 h-15 rounded-full bg-white flex items-center justify-center text-gray-500 text-3xl border-4 border-white">
                             <User size={35} />
                         </div>

@@ -3,13 +3,11 @@ import { PostsSection } from "./components/PostsSection";
 import { PostModalRenderer } from "./components/PostModal";
 import { CreatePostModalRenderer } from "./components/CreatePostModal";
 import { CreatePostSpinnerRenderer } from "./components/CreatePostSpinner";
-import { ReactQueryProvider } from "./components/ReactQueryProvider";
 
 
 export default function Home() {
     return (
-        <ReactQueryProvider>
-            <main className="bg-white dark:bg-black min-h-[100dvh] max-h-[100dvh] flex flex-col overflow-hidden">
+        <main className="bg-white dark:bg-black min-h-[100dvh] max-h-[100dvh] flex flex-col overflow-hidden">
             <Navbar />
             <section className="flex justify-center flex-1">
                 <PostsSection />
@@ -18,6 +16,5 @@ export default function Home() {
             <CreatePostModalRenderer />
             <CreatePostSpinnerRenderer />
         </main>
-        </ReactQueryProvider>
     );
 }

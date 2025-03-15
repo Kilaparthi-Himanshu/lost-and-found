@@ -7,8 +7,7 @@ import { createPostModalOpenAtom, userIdAtom, createPostSpinnerAtom } from '../A
 import { AnimatePresence, motion } from 'framer-motion';
 import { X, Image } from 'lucide-react';
 import { createClient } from '../utils/supabase/client';
-import { redirect, useRouter } from "next/navigation";
-import { revalidatePath } from 'next/cache';
+import { redirect } from "next/navigation";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const CreatePostModal = () => {
@@ -17,7 +16,6 @@ export const CreatePostModal = () => {
     const [modalOpen, setModalOpen] = useAtom(createPostModalOpenAtom);
     const [image, setImage] = useState<File | null>(null);
     const [userId, setUserId] = useAtom(userIdAtom);
-    const router = useRouter();
     const [createPostSpinner, setCreatePostSpinner] = useAtom(createPostSpinnerAtom);
 
     const queryClient = useQueryClient();
