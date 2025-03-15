@@ -9,7 +9,6 @@ import { createClient } from '@/app/utils/supabase/client';
 import { useConfirmModal } from '@/app/utils/hooks/useConfirmModal';
 import { EditPostModal } from './EditPostModal';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deepEqual } from 'assert';
 
 export interface PostProps {
     post: {

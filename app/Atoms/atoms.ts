@@ -16,9 +16,7 @@ export const searchAtom = atom<string>('');
 
 export const userIdAtom = atom<string>('');
 
-export const postsAtom = atom<Post[]>([
-    
-]);
+export const postsAtom = atom<Post[]>([]);
 
 export const modalOpenAtom = atom<boolean>(false);
 
