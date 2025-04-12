@@ -39,38 +39,38 @@ export const PostModal = ({post}: PostProps) => {
     }, []);
 
     function formatDate(dateString: string): string {
-            // Parse the input date string (format: YYYY-MM-DD)
-            const date = new Date(dateString);
+        // Parse the input date string (format: YYYY-MM-DD)
+        const date = new Date(dateString);
 
-            // Define options for formatting with proper TypeScript types
-            const options: Intl.DateTimeFormatOptions = {
-                weekday: 'long',    // Must be 'long', 'short', or 'narrow'
-                month: 'long',      // Must be 'numeric', '2-digit', 'long', 'short', or 'narrow'
-                day: 'numeric',     // Must be 'numeric' or '2-digit'
-                year: 'numeric'     // Must be 'numeric' or '2-digit'
-            };
+        // Define options for formatting with proper TypeScript types
+        const options: Intl.DateTimeFormatOptions = {
+            weekday: 'long',    // Must be 'long', 'short', or 'narrow'
+            month: 'long',      // Must be 'numeric', '2-digit', 'long', 'short', or 'narrow'
+            day: 'numeric',     // Must be 'numeric' or '2-digit'
+            year: 'numeric'     // Must be 'numeric' or '2-digit'
+        };
 
-            return date.toLocaleDateString('en-US', options);
-        }
+        return date.toLocaleDateString('en-US', options);
+    }
 
-        function formatTime(timeString: string): string {
-            // Parse the time string (format: HH:MM)
-            const [hours, minutes] = timeString.split(':').map(Number);
+    function formatTime(timeString: string): string {
+        // Parse the time string (format: HH:MM)
+        const [hours, minutes] = timeString.split(':').map(Number);
 
-            // Create a date object (using today's date)
-            const date = new Date();
-            date.setHours(hours);
-            date.setMinutes(minutes);
+        // Create a date object (using today's date)
+        const date = new Date();
+        date.setHours(hours);
+        date.setMinutes(minutes);
 
-            // Format the time
-            const options: Intl.DateTimeFormatOptions = {
-                hour: 'numeric',
-                minute: '2-digit',
-                hour12: true // This ensures 12-hour format with AM/PM
-            };
+        // Format the time
+        const options: Intl.DateTimeFormatOptions = {
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true // This ensures 12-hour format with AM/PM
+        };
 
-            return date.toLocaleTimeString('en-US', options);
-        }
+        return date.toLocaleTimeString('en-US', options);
+    }
 
     return (
         <motion.div className='bg-[rgba(43,43,43,0.3)] dark:bg-[rgba(10,10,10,0.6)] absolute w-full h-full flex items-center justify-center py-9' initial={{ opacity: 0}} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.1 }}>

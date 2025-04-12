@@ -19,10 +19,10 @@ export const PostsSection = () => {
                 setPosts(data.posts);
                 setUserId(data.user.id);
             }
-        },
+        }, // passing onSuccess function to the hook
         onError: (error) => {
             console.error('Failed to fetch Posts/User', error);
-        }
+        } // passing onError function to the hook
     }); // Example of using hook which calls query
 
     return (
