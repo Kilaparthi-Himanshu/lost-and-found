@@ -8,6 +8,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 export default function LoginPage() {
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const [userAction, setUserAction] = useState<string>('Login');
+    const [signedup, setSignedup] = useState(false);
 
     function changeUserAction(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
@@ -61,10 +62,20 @@ export default function LoginPage() {
                             </motion.div>
                         </div>
                     </div>
-                <button className='w-40 h-10 font-bold border border-stone-600 self-center rounded mt-2 text-xl text-stone-600 cursor-pointer shadow-sm active:scale-95 transition-[scale,background] bg-[rgba(255,_255,_255,_0.4)] hover:bg-[rgba(255,_255,_255,_0.6)]' formAction={userAction === 'Signup' ? signup : login}>
+                <button className='w-40 h-10 font-bold border border-stone-600 self-center rounded mt-2 text-xl text-stone-600 cursor-pointer shadow-sm active:scale-95 transition-[scale,background] bg-[rgba(255,_255,_255,_0.4)] hover:bg-[rgba(255,_255,_255,_0.6)]' formAction={userAction === 'Signup' ? (formData: FormData) => {
+                    signup(formData);
+                    setSignedup(true);
+                } : login}>
                     {userAction}
                 </button>
                 </div>
+
+                {signedup &&
+                    <span className='text-lg underline underline-offset-2 decoration-amber-300 font-semibold'>
+                        Verification Email Has been Sent!
+                    </span>
+                }
+
                 <div className='flex items-center justify-center gap-3 text-stone-100'>
                     {userAction === 'Signup' ? 'Already have an account?' : `Don't have an account?`}
                     <button onClick={changeUserAction} className='cursor-pointer hover:underline text-blue-600 font-medium'>
