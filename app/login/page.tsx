@@ -62,10 +62,16 @@ export default function LoginPage() {
                             </motion.div>
                         </div>
                     </div>
-                <button className='w-40 h-10 font-bold border border-stone-600 self-center rounded mt-2 text-xl text-stone-600 cursor-pointer shadow-sm active:scale-95 transition-[scale,background] bg-[rgba(255,_255,_255,_0.4)] hover:bg-[rgba(255,_255,_255,_0.6)]' formAction={userAction === 'Signup' ? (formData: FormData) => {
-                    signup(formData);
-                    setSignedup(true);
-                } : login}>
+                <button className='w-40 h-10 font-bold border border-stone-600 self-center rounded mt-2 text-xl text-stone-600 cursor-pointer shadow-sm active:scale-95 transition-[scale,background] bg-[rgba(255,_255,_255,_0.4)] hover:bg-[rgba(255,_255,_255,_0.6)]' formAction={
+                    async (formData: FormData) => {
+                        if (userAction === 'Signup') {
+                            await signup(formData);
+                            setSignedup(true);
+                        } else {
+                            await login(formData);
+                        }
+                    }
+                }>
                     {userAction}
                 </button>
                 </div>
